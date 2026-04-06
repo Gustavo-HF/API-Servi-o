@@ -1,10 +1,17 @@
 package com.servicos.servico.Model;
 import java.sql.Date;
 
+import com.servicos.servico.Enum.Atendente;
+import com.servicos.servico.Enum.CategoriaServico;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Servico{
@@ -14,23 +21,28 @@ public class Servico{
 
     private long id;
 
-    private Enum categoriaServico;
+    @Enumerated(EnumType.STRING)
+    private CategoriaServico categoriaServico;
 
+    @NotNull(message="O campo data de criação não pode estar vazio")
     private Date dataDeCriacaoDoServico;
 
     private boolean isServicoConcluido;
 
+    @NotNull(message="O campo de valor não pode estar nulo")
     private double valor;
 
-    private Enum atendente;
+    @Enumerated(EnumType.STRING)
+    private Atendente atendente;
 
+    @NotBlank(message="O campo de descrição não pode estar vazio")
     private String descricaoDoServico;
 
     public Servico() {
 
     }
 
-    public Servico(Enum atendente, Enum categoriaServico, Date dataDeCriacaoDoServico, String descricaoDoServico, long id, boolean isServicoConcluido, double valor) {
+    public Servico(Atendente atendente, CategoriaServico categoriaServico, Date dataDeCriacaoDoServico, String descricaoDoServico, long id, boolean isServicoConcluido, double valor) {
         this.atendente = atendente;
         this.categoriaServico = categoriaServico;
         this.dataDeCriacaoDoServico = dataDeCriacaoDoServico;
@@ -48,11 +60,11 @@ public class Servico{
         this.id = id;
     }
 
-    public Enum getCategoriaServico() {
+    public CategoriaServico getCategoriaServico() {
         return categoriaServico;
     }
 
-    public void setCategoriaServico(Enum categoriaServico) {
+    public void setCategoriaServico(CategoriaServico categoriaServico) {
         this.categoriaServico = categoriaServico;
     }
 
@@ -80,11 +92,11 @@ public class Servico{
         this.valor = valor;
     }
 
-    public Enum getAtendente() {
+    public Atendente getAtendente() {
         return atendente;
     }
 
-    public void setAtendente(Enum atendente) {
+    public void setAtendente(Atendente atendente) {
         this.atendente = atendente;
     }
 
