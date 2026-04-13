@@ -30,6 +30,7 @@ import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/servicos")
 @Tag(name = "Serviços", description = "Operações de cadastro e gerenciamento de serviços")
